@@ -328,10 +328,10 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Remap for clearing highlights that result from hlsearch
+-- Keymap for clearing highlights that result from hlsearch
 vim.keymap.set('n', '<Esc>', ":noh <CR>", { desc = 'Clear highlights', silent = true })
 
--- Remap for saving file
+-- Keymap for saving file
 vim.keymap.set('n', "<C-s>", "<cmd> w <CR>", { desc = 'Save file' })
 
 -- Diagnostic keymaps
