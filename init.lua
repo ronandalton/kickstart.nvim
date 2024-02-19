@@ -343,6 +343,9 @@ vim.keymap.set('n', "<leader>l", function()
     vim.go.background = "light"
   else
     vim.go.background = "dark"
+    -- Workaround to set style to 'darker' instead of default 'dark' when switching back
+    require('onedark').set_options('style', 'darker')
+    require('onedark').load()
   end
 end, { desc = 'Switch between light and dark mode'})
 
