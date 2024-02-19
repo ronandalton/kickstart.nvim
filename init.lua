@@ -334,6 +334,18 @@ vim.keymap.set('n', '<Esc>', ":noh <CR>", { desc = 'Clear highlights', silent = 
 -- Keymap for saving file
 vim.keymap.set('n', "<C-s>", "<cmd> w <CR>", { desc = 'Save file' })
 
+-- Keymap for toggling spell check
+vim.keymap.set('n', '<leader>S', ":set spell! <CR>", { desc = 'Toggle spell check' })
+
+-- Keymap for switching between light and dark mode
+vim.keymap.set('n', "<leader>l", function()
+  if vim.go.background == "dark" then
+    vim.go.background = "light"
+  else
+    vim.go.background = "dark"
+  end
+end, { desc = 'Switch between light and dark mode'})
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
