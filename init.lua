@@ -332,6 +332,19 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Remap to yank a text region without the cursor moving to the start of the block
+vim.keymap.set('v', 'y', 'ygv<Esc>')
+
+-- Keymap to replace text with clipboard contents without overwriting clipboard contents
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste but keep current clipboard contents' })
+
+-- Keymap to easily copy text to system clipboard
+vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]], { desc = 'Copy text to system clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Copy text to system clipboard' })
+
+-- Keymap to delete text without it being put in the clipboard
+vim.keymap.set({'n', 'v'}, '<leader>D', [["_d]], { desc = 'Delete text without putting it in the clipboard' })
+
 -- Keymap for clearing highlights that result from hlsearch
 vim.keymap.set('n', '<Esc>', ':noh <CR>', { desc = 'Clear highlights', silent = true })
 
@@ -340,6 +353,9 @@ vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file' })
 
 -- Keymap for toggling spell check
 vim.keymap.set('n', '<leader>S', ':set spell! <CR>', { desc = 'Toggle spell check' })
+
+-- Keymap for toggling display of relative line numbers
+vim.keymap.set('n', '<leader>n', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 
 -- Keymap for switching between light and dark mode
 vim.keymap.set('n', '<leader>l', function()
