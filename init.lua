@@ -333,20 +333,20 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Keymap for clearing highlights that result from hlsearch
-vim.keymap.set('n', '<Esc>', ":noh <CR>", { desc = 'Clear highlights', silent = true })
+vim.keymap.set('n', '<Esc>', ':noh <CR>', { desc = 'Clear highlights', silent = true })
 
 -- Keymap for saving file
-vim.keymap.set('n', "<C-s>", "<cmd> w <CR>", { desc = 'Save file' })
+vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { desc = 'Save file' })
 
 -- Keymap for toggling spell check
-vim.keymap.set('n', '<leader>S', ":set spell! <CR>", { desc = 'Toggle spell check' })
+vim.keymap.set('n', '<leader>S', ':set spell! <CR>', { desc = 'Toggle spell check' })
 
 -- Keymap for switching between light and dark mode
-vim.keymap.set('n', "<leader>l", function()
-  if vim.go.background == "dark" then
-    vim.go.background = "light"
+vim.keymap.set('n', '<leader>l', function()
+  if vim.go.background == 'dark' then
+    vim.go.background = 'light'
   else
-    vim.go.background = "dark"
+    vim.go.background = 'dark'
     -- Workaround to set style to 'darker' instead of default 'dark' when switching back
     require('onedark').set_options('style', 'darker')
     require('onedark').load()
