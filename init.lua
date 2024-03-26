@@ -322,6 +322,9 @@ vim.o.termguicolors = true
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 
+-- Fix issue with tag file lookups using linear search instead of binary search because ignorecase is true
+vim.o.tagcase = 'match'
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
