@@ -343,7 +343,7 @@ vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste but keep current clip
 
 -- Keymap to easily copy text to system clipboard
 vim.keymap.set({'n', 'v'}, '<leader>y', [["+y]], { desc = 'Copy text to system clipboard' })
-vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Copy text to system clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+y$]], { desc = 'Copy text to system clipboard' })
 
 -- Keymap to delete text without it being put in the clipboard
 vim.keymap.set({'n', 'v'}, '<leader>D', [["_d]], { desc = 'Delete text without putting it in the clipboard' })
