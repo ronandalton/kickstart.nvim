@@ -104,10 +104,6 @@ vim.opt.number = true
 -- Enable relative line numbers
 vim.opt.relativenumber = true
 
--- Set default tab width to 4
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
