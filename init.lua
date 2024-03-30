@@ -144,7 +144,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 2
 
 -- Fix issue with tag file lookups using linear search instead of binary search because ignorecase is true
 vim.opt.tagcase = 'match'
