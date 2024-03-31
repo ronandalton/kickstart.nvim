@@ -149,6 +149,9 @@ vim.opt.scrolloff = 2
 -- Fix issue with tag file lookups using linear search instead of binary search because ignorecase is true
 vim.opt.tagcase = 'match'
 
+-- Allow per project configuration via .exrc files
+vim.opt.exrc = true
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
