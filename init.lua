@@ -180,12 +180,12 @@ vim.keymap.set('n', '<leader>n', '<cmd>set relativenumber!<CR>', { desc = 'Toggl
 
 -- Keymap for switching between light and dark themes
 vim.keymap.set('n', '<leader>l', function()
-  if IS_LIGHT_MODE then
+  if IsLightMode then
     vim.cmd.colorscheme 'tokyonight-night'
-    IS_LIGHT_MODE = false
+    IsLightMode = false
   else
     vim.cmd.colorscheme 'tokyonight-day'
-    IS_LIGHT_MODE = true
+    IsLightMode = true
   end
 end, { desc = 'Switch between light and dark mode' })
 
@@ -849,7 +849,7 @@ require('lazy').setup({
       vim.cmd.hi 'Comment gui=none'
 
       -- Set global variable used by theme toggle keymap
-      IS_LIGHT_MODE = false
+      IsLightMode = false
     end,
   },
 
