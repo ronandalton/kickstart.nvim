@@ -117,6 +117,9 @@ vim.opt.breakindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Disable spellcheck checking that words at the start of sentences are capitalized
+vim.opt.spellcapcheck = ''
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
