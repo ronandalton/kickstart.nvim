@@ -11,11 +11,6 @@ return {
     vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
     vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
-    require('ufo').setup {
-      ---@diagnostic disable-next-line: unused-local
-      provider_selector = function(bufnr, filetype, buftype)
-        return { 'treesitter', 'indent' }
-      end,
-    }
+    require('ufo').setup()
   end,
 }
