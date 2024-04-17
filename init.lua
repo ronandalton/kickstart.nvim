@@ -470,6 +470,19 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
+      -- Helper function to get currently selected text
+      local getVisualSelection = function()
+        vim.cmd 'noautocmd normal! "vy"'
+        local text = vim.fn.getreg 'v'
+        vim.fn.setreg('v', {})
+        text = string.gsub(text, '\n', '')
+        if #text > 0 then
+          return text
+        else
+          return ''
+        end
+      end
+
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -478,6 +491,10 @@ require('lazy').setup({
       vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = '[S]earch [F]iles' }) -- Alternate keybind
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('v', '<leader>sw', function() -- Allow searching for current selection too
+        local text = getVisualSelection()
+        builtin.grep_string { search = text }
+      end, { desc = '[S]earch currently selected [W]ord(s)' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
