@@ -10,8 +10,8 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    vim.keymap.set('n', '<leader>nt', ':Neotree toggle reveal<cr>')
-    vim.keymap.set('n', '<leader>ng', ':Neotree toggle git_status<cr>')
+    vim.keymap.set('n', '<leader>nf', '<cmd>Neotree toggle reveal<CR>', { desc = '[N]eotree toggle [f]ile view' })
+    vim.keymap.set('n', '<leader>ng', '<cmd>Neotree toggle git_status<CR>', { desc = '[N]eotree toggle [G]it view' })
 
     require('neo-tree').setup {
       filesystem = {
