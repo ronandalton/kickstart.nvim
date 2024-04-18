@@ -1,4 +1,4 @@
 return {
-  "matze/vim-move",
-  version = "*",
+  'matze/vim-move',
+  version = '*',
 }
