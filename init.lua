@@ -179,7 +179,7 @@ vim.keymap.set('n', '<leader>Y', '"+y$', { desc = 'Copy text to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>D', '"_d', { desc = 'Delete text without yanking it' })
 
 -- Keymap for toggling display of relative line numbers
-vim.keymap.set('n', '<leader>n', '<cmd>set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
+vim.keymap.set('n', '<leader>N', '<cmd>set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 
 -- Keymap for switching between light and dark themes
 vim.keymap.set('n', '<leader>l', function()

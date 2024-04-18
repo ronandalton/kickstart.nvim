@@ -10,6 +10,17 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    require('neo-tree').setup {}
+    vim.keymap.set('n', '<leader>nt', ':Neotree toggle reveal<cr>')
+    vim.keymap.set('n', '<leader>ng', ':Neotree toggle git_status<cr>')
+
+    require('neo-tree').setup {
+      filesystem = {
+        use_libuv_file_watcher = true,
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = false,
+        },
+      },
+    }
   end,
 }
