@@ -117,8 +117,14 @@ vim.opt.breakindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Disable spellcheck checking that words at the start of sentences are capitalized
+-- Disable spellcheckMap checking that words at the start of sentences are capitalized
 vim.opt.spellcapcheck = ''
+
+-- Spellcheck words in camel-case correctly
+vim.opt.spelloptions:append 'camel'
+
+-- Make the jump list behave like a stack instead of the slightly unusual way that it normally behaves
+vim.opt.jumpoptions:append 'stack'
 
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
@@ -191,6 +197,9 @@ vim.keymap.set('n', '<leader>l', function()
     vim.g.is_light_mode = true
   end
 end, { desc = 'Switch between light and dark mode' })
+
+-- Keymap to automatically fix currently misspelled word under cursor with first suggestion
+vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under cursor' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
