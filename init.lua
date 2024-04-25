@@ -117,6 +117,13 @@ vim.opt.breakindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Turn on spellcheck by default
+vim.opt.spell = true
+
+-- Disable spellcheck in places where it shouldn't be enabled
+vim.cmd 'au TermOpen * setlocal nospell'
+vim.cmd 'au FileType qf setlocal nospell'
+
 -- Disable spellcheckMap checking that words at the start of sentences are capitalized
 vim.opt.spellcapcheck = ''
 
