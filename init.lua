@@ -179,7 +179,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR>', { desc = 'Save file' })
 
 -- Keymap for toggling spell check
-vim.keymap.set('n', '<leader>S', '<cmd>set spell!<CR>', { desc = 'Toggle spell check' })
+vim.keymap.set('n', '<leader>ts', '<cmd>set spell!<CR>', { desc = '[T]oggle [s]pell check' })
 
 -- Remap to yank a text region without the cursor moving to the start of the block
 vim.keymap.set('v', 'y', 'ygv<Esc>')
@@ -192,10 +192,10 @@ vim.keymap.set('n', '<leader>Y', '"+y$', { desc = 'Copy text to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>D', '"_d', { desc = 'Delete text without yanking it' })
 
 -- Keymap for toggling display of relative line numbers
-vim.keymap.set('n', '<leader>N', '<cmd>set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
+vim.keymap.set('n', '<leader>tn', '<cmd>set relativenumber!<CR>', { desc = '[T]oggle relative line [n]umbers' })
 
 -- Keymap for switching between light and dark themes
-vim.keymap.set('n', '<leader>l', function()
+vim.keymap.set('n', '<leader>tl', function()
   if vim.g.is_light_mode then
     vim.cmd.colorscheme 'tokyonight-night'
     vim.g.is_light_mode = false
@@ -203,7 +203,7 @@ vim.keymap.set('n', '<leader>l', function()
     vim.cmd.colorscheme 'tokyonight-day'
     vim.g.is_light_mode = true
   end
-end, { desc = 'Switch between light and dark mode' })
+end, { desc = '[T]oggle between [l]ight and dark mode' })
 
 -- Keymap to automatically fix currently misspelled word under cursor with first suggestion
 vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under cursor' })
