@@ -171,6 +171,21 @@ vim.opt.exrc = true
 -- Enable the builtin cfilter plugin to allow filtering the quickfix list with the :Cfilter and :Lfilter commands
 vim.cmd 'packadd cfilter'
 
+-- Allow deleting items in quickfix list with 'dd'
+vim.cmd [[
+function! RemoveQFItem()
+  let curqfidx = line('.') - 1
+  let qfall = getqflist()
+  call remove(qfall, curqfidx)
+  call setqflist(qfall, 'r')
+  execute curqfidx + 1 . "cfirst"
+  :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+]]
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
