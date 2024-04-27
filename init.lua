@@ -168,6 +168,9 @@ vim.opt.tagcase = 'match'
 -- Allow per project configuration via .exrc files
 vim.opt.exrc = true
 
+-- Enable the builtin cfilter plugin to allow filtering the quickfix list with the :Cfilter and :Lfilter commands
+vim.cmd 'packadd cfilter'
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
