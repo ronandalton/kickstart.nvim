@@ -122,7 +122,7 @@ vim.opt.spell = true
 
 -- Disable spellcheck in places where it shouldn't be enabled
 vim.cmd 'au TermOpen * setlocal nospell'
-vim.cmd 'au FileType qf,checkhealth setlocal nospell'
+vim.cmd 'au FileType qf,checkhealth,git setlocal nospell'
 
 -- Disable spellcheckMap checking that words at the start of sentences are capitalized
 vim.opt.spellcapcheck = ''
