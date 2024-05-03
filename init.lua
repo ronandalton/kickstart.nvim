@@ -977,6 +977,12 @@ require('lazy').setup({
           node_decremental = '<M-space>',
         },
       },
+      -- The following is required to enable integration with the vim-matchup plugin
+      matchup = {
+        enable = true,
+        disable = { 'c', 'cpp', 'ruby' },
+        disable_virtual_text = true,
+      },
     },
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
