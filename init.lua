@@ -969,11 +969,9 @@ require('lazy').setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup {
         custom_textobjects = {
-          F = spec_treesitter { a = '@function.outer', i = '@function.inner' },
-          o = spec_treesitter {
-            a = { '@conditional.outer', '@loop.outer' },
-            i = { '@conditional.inner', '@loop.inner' },
-          },
+          a = spec_treesitter { a = '@parameter.outer', i = '@parameter.inner' },
+          f = spec_treesitter { a = '@function.outer', i = '@function.inner' },
+          c = spec_treesitter { a = '@class.outer', i = '@class.inner' },
         },
         mappings = {
           goto_right = '', -- mini.ai clobbers g] by default, unmap
@@ -1040,6 +1038,37 @@ require('lazy').setup({
         enable = true,
         disable = { 'c', 'cpp', 'ruby' },
         disable_virtual_text = true,
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          set_jumps = true, -- whether to set jumps in the jumplist
+          goto_next_start = {
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
+          },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ['<leader>a'] = '@parameter.inner',
+          },
+          swap_previous = {
+            ['<leader>A'] = '@parameter.inner',
+          },
+        },
       },
     },
     config = function(_, opts)
