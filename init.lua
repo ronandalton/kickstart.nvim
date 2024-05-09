@@ -227,6 +227,15 @@ vim.keymap.set('n', '<leader>tl', function()
   end
 end, { desc = '[T]oggle between [l]ight and dark mode' })
 
+-- Keymap for quickly toggling between tabstop sizes of 4 and 8
+vim.keymap.set('n', '<leader>tt', function()
+  if vim.o.tabstop == 8 then
+    vim.o.tabstop = 4
+  else
+    vim.o.tabstop = 8
+  end
+end, { desc = '[T]oggle between [t]abstop sizes of 4 and 8' })
+
 -- Keymap to automatically fix currently misspelled word under cursor with first suggestion
 vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under cursor' })
 
