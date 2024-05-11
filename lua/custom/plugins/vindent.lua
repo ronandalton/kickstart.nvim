@@ -1,5 +1,5 @@
 return {
-  'jessekelighine/vindent.vim',
+  'ronandalton/vindent.vim',
   init = function()
     vim.g.vindent_motion_OO_prev = '[=' -- jump to prev block of same indent
     vim.g.vindent_motion_OO_next = ']=' -- jump to next block of same indent
