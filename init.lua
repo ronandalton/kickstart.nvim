@@ -227,12 +227,14 @@ vim.keymap.set('n', '<leader>tl', function()
   end
 end, { desc = '[T]oggle between [l]ight and dark mode' })
 
--- Keymap for quickly toggling between tabstop sizes of 4 and 8
+-- Keymap for quickly toggling between tab sizes of 4 and 8 (when using tabs instead of spaces)
 vim.keymap.set('n', '<leader>tt', function()
   if vim.o.tabstop == 8 then
     vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
   else
     vim.o.tabstop = 8
+    vim.o.shiftwidth = 8
   end
 end, { desc = '[T]oggle between [t]abstop sizes of 4 and 8' })
 
