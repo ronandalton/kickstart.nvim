@@ -21,6 +21,9 @@ return {
         enabled = true,
         leave_dirs_open = false,
       },
+      filtered_items = {
+        visible = true,
+      },
     },
   },
 }
