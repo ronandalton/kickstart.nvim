@@ -1035,8 +1035,16 @@ require('lazy').setup({
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup {
+        content = {
+          -- Change format of the status line for inactive windows to use relative instead of full path of file
+          inactive = function()
+            return '%#MiniStatuslineInactive#%f%=' -- default had %F instead of %f
+          end,
+        },
+        -- set use_icons to true if you have a Nerd Font
+        use_icons = vim.g.have_nerd_font,
+      }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -1044,6 +1052,19 @@ require('lazy').setup({
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
+      end
+
+      -- By default the file's full path is shown for active windows when the window is wide.
+      -- Make it always just show the relative path instead.
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_filename = function()
+        -- In terminal always use plain name
+        if vim.bo.buftype == 'terminal' then
+          return '%t'
+        else
+          -- Always use relative path
+          return '%f%m%r'
+        end
       end
 
       -- ... and there is more!
