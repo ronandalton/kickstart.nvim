@@ -1,5 +1,6 @@
 return {
   'stevearc/oil.nvim',
+  lazy = false, -- needed to allow directories to be opened at startup
   -- Optional dependencies
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   cmd = 'Oil',
