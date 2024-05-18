@@ -1037,10 +1037,16 @@ require('lazy').setup({
       local statusline = require 'mini.statusline'
       statusline.setup {
         content = {
-          -- Change format of the status line for inactive windows to use relative instead of full path of file
           inactive = function()
-            return '%#MiniStatuslineInactive#%f%=' -- default had %F instead of %f
+            if vim.bo.buftype == 'terminal' then
+              -- In terminal always use plain name
+              return '%#MiniStatuslineInactive#%t%='
+            else
+              -- Always use relative path for files
+              return '%#MiniStatuslineInactive#%f%='
+            end
           end,
+          -- active uses the default but the function it uses to get the filename format is overwritten below
         },
         -- set use_icons to true if you have a Nerd Font
         use_icons = vim.g.have_nerd_font,
@@ -1058,11 +1064,11 @@ require('lazy').setup({
       -- Make it always just show the relative path instead.
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_filename = function()
-        -- In terminal always use plain name
         if vim.bo.buftype == 'terminal' then
+          -- In terminal always use plain name
           return '%t'
         else
-          -- Always use relative path
+          -- Always use relative path for files
           return '%f%m%r'
         end
       end
