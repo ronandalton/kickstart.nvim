@@ -1,5 +1,5 @@
 return {
-  'ronandalton/vindent.vim',
+  'jessekelighine/vindent.vim',
   init = function()
     vim.g.vindent_motion_OO_prev = '[=' -- jump to prev block of same indent
     vim.g.vindent_motion_OO_next = ']=' -- jump to next block of same indent
@@ -15,6 +15,8 @@ return {
     vim.g.vindent_object_XX_ai = 'ai' -- select current block + one extra line at beginning
     vim.g.vindent_object_XX_aI = 'aI' -- select current block + two extra lines at beginning and end
     vim.g.vindent_jumps = 1 -- make vindent motion count as a |jump-motion| (works with |jumplist|)
+    vim.g.vindent_infer = 1 -- make vindent work on blank lines too
+    vim.g.vindent_block_ending = { ')', ']', '}', 'end', 'else', 'elif', '</' }
   end,
   config = function()
     vim.keymap.set('', '-', '[-', { remap = true })
