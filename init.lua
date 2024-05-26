@@ -488,6 +488,12 @@ require('lazy').setup({
         --
         defaults = {
           layout_strategy = 'flex',
+          layout_config = {
+            flex = {
+              flip_columns = 120,
+              flip_lines = 40,
+            },
+          },
           file_ignore_patterns = {
             '%.git/',
           },
