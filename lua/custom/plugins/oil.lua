@@ -16,5 +16,11 @@ return {
       max_width = 140,
       max_height = 40,
     },
+    keymaps = {
+      ['<Esc><Esc>'] = 'actions.close',
+      ['<leader>o'] = 'actions.close',
+      ['<C-s>'] = false, -- don't clobber <c-s> to save
+      ['<C-S-s>'] = 'actions.select_vsplit',
+    },
   },
 }
