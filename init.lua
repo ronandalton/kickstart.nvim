@@ -489,8 +489,11 @@ require('lazy').setup({
         defaults = {
           layout_strategy = 'flex',
           layout_config = {
+            horizontal = {
+              preview_cutoff = 150,
+            },
             flex = {
-              flip_columns = 120,
+              flip_columns = 150,
               flip_lines = 40,
             },
           },
