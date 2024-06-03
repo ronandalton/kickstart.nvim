@@ -244,6 +244,12 @@ vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under
 -- Keymap to help set up a find and replace for the current word under the cursor
 vim.keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]], { desc = '[R]e[p]lace word in buffer' })
 
+-- Remaps to make scroll keys easier to reach
+vim.keymap.set({ 'n', 'v' }, '<M-j>', '<c-e>', { remap = true })
+vim.keymap.set({ 'n', 'v' }, '<M-k>', '<c-y>', { remap = true })
+vim.keymap.set({ 'n', 'v' }, '<M-l>', '<c-d>', { remap = true })
+vim.keymap.set({ 'n', 'v' }, '<M-h>', '<c-u>', { remap = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -1078,7 +1084,22 @@ require('lazy').setup({
         end
       end
 
-      require('mini.move').setup()
+      require('mini.move').setup {
+        -- Mappings are set so as to not conflict with the convenience keymaps for scrolling and tmux window switching
+        mappings = {
+          -- Move visual selection in Visual mode
+          left = '',
+          right = '',
+          down = '<M-S-j>',
+          up = '<M-S-k>',
+
+          -- Move current line in Normal mode
+          line_left = '',
+          line_right = '',
+          line_down = '<M-S-j>',
+          line_up = '<M-S-k>',
+        },
+      }
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
