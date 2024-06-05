@@ -493,6 +493,13 @@ require('lazy').setup({
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          mappings = {
+            i = {
+              ['<M-j>'] = 'move_selection_next',
+              ['<M-k>'] = 'move_selection_previous', -- overrides results_scrolling_right - use normal mode instead if needed
+              ['<M-l>'] = 'select_default',
+            },
+          },
           layout_strategy = 'flex',
           layout_config = {
             horizontal = {
@@ -943,6 +950,11 @@ require('lazy').setup({
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
           ['<C-y>'] = cmp.mapping.confirm { select = true },
+
+          -- My alternate mappings
+          ['<M-j>'] = cmp.mapping.select_next_item(),
+          ['<M-k>'] = cmp.mapping.select_prev_item(),
+          ['<M-l>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
