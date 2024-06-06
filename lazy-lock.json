@@ -45,5 +45,5 @@
   "vim-tmux-navigator": { "branch": "master", "commit": "5b3c701686fb4e6629c100ed32e827edf8dad01e" },
   "vim-wordmotion": { "branch": "master", "commit": "81d9bd298376ab0dc465c85d55afa4cb8d5f47a1" },
   "vindent.vim": { "branch": "main", "commit": "f8433c1ab0852943f0dfcb0c500b6fb06ac13ad1" },
-  "which-key.nvim": { "branch": "main", "commit": "d87c01c9bbcc7c1c2d248dca1b11285259d66be8" }
+  "which-key.nvim": { "branch": "main", "commit": "bac74db3f3333f2fe8b498423e8680f7e1b36a88" }
 }
