@@ -15,6 +15,7 @@ return {
     { '<leader>ng', '<cmd>Neotree toggle git_status<CR>', desc = '[N]eotree toggle [G]it view' },
   },
   opts = {
+    close_if_last_window = true,
     filesystem = {
       hijack_netrw_behavior = 'disabled',
       use_libuv_file_watcher = true,
