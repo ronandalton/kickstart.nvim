@@ -5,7 +5,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   cmd = 'Oil',
   keys = {
-    { '<leader>o', '<cmd>Oil --float<CR>', desc = 'Open [O]il file manager' },
+    { '<leader>oo', '<cmd>Oil --float<CR>', desc = '[O]pen [O]il file manager' },
   },
   opts = {
     view_options = {
@@ -18,7 +18,6 @@ return {
     },
     keymaps = {
       ['<Esc><Esc>'] = 'actions.close',
-      ['<leader>o'] = 'actions.close',
       ['<C-s>'] = false, -- don't clobber <c-s> to save
       ['<C-S-s>'] = 'actions.select_vsplit',
     },
