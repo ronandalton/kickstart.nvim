@@ -168,6 +168,13 @@ vim.opt.tagcase = 'match'
 -- Allow per project configuration via .exrc files
 vim.opt.exrc = true
 
+-- Customize shada to not save registers and search/command/input-line history
+vim.opt.shada:append { '<0', '/0', ':0', '@0' }
+vim.opt.shada:remove { '<50' }
+
+-- Start vim with an empty jump list
+vim.cmd 'autocmd VimEnter * :clearjumps'
+
 -- Enable the builtin cfilter plugin to allow filtering the quickfix list with the :Cfilter and :Lfilter commands
 vim.cmd 'packadd cfilter'
 
