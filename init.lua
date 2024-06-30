@@ -1027,6 +1027,18 @@ require('lazy').setup({
       -- Set global variable used by theme toggle keymap
       vim.g.is_light_mode = false
     end,
+    opts = {
+      -- Make diff colors more legible.
+      -- Assume using 'night' variant of theme.
+      on_colors = function(colors)
+        colors.diff = {
+          add = '#20303b', -- same as default
+          change = '#252d55',
+          delete = '#37222c', -- same as default
+          text = '#2c3a80',
+        }
+      end,
+    },
   },
 
   -- Highlight todo, notes, etc in comments
