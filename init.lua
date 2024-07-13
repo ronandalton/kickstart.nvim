@@ -1074,48 +1074,6 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      statusline.setup {
-        content = {
-          inactive = function()
-            if vim.bo.buftype == 'terminal' then
-              -- In terminal always use plain name
-              return '%#MiniStatuslineInactive#%t%='
-            else
-              -- Always use relative path for files
-              return '%#MiniStatuslineInactive#%f%='
-            end
-          end,
-          -- active uses the default but the function it uses to get the filename format is overwritten below
-        },
-        -- set use_icons to true if you have a Nerd Font
-        use_icons = vim.g.have_nerd_font,
-      }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      -- By default the file's full path is shown for active windows when the window is wide.
-      -- Make it always just show the relative path instead.
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_filename = function()
-        if vim.bo.buftype == 'terminal' then
-          -- In terminal always use plain name
-          return '%t'
-        else
-          -- Always use relative path for files
-          return '%f%m%r'
-        end
-      end
-
       require('mini.move').setup {
         -- Mappings are set so as to not conflict with the convenience keymaps for scrolling and tmux window switching
         mappings = {
