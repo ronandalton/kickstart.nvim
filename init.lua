@@ -286,6 +286,14 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- [[ Custom Abbreviations ]]
+
+-- Auto-fix misspelled words
+vim.cmd [[ab reutnr return]]
+vim.cmd [[ab ruetnr return]]
+vim.cmd [[ab reutrn return]]
+vim.cmd [[ab ruetrn return]]
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
