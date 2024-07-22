@@ -43,6 +43,20 @@ return {
     },
   },
   opts = {
+    sources = {
+      path = {
+        -- Make the path component show only the folder the current file is in
+        relative_to = function(buf)
+          local file_path = vim.fs.normalize(vim.api.nvim_buf_get_name(buf))
+
+          if file_path == '' then
+            return ''
+          end
+
+          return vim.fs.dirname(file_path)
+        end,
+      },
+    },
     bar = {
       sources = function(buf, _)
         local sources = require 'dropbar.sources'
