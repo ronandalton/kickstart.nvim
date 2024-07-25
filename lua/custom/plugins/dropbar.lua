@@ -1,3 +1,4 @@
+-- Note: this could be reimplemented using get_location from aerial.nvim instead of nvim-gps
 local function get_custom_treesitter_source()
   local bar = require 'dropbar.bar'
   return {

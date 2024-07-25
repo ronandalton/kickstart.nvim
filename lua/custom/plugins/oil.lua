@@ -5,7 +5,7 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   cmd = 'Oil',
   keys = {
-    { '<leader>oo', '<cmd>Oil --float<CR>', desc = '[O]pen [O]il file manager' },
+    { '<leader>of', '<cmd>Oil --float<CR>', desc = '[O]pen [f]ile manager (Oil)' },
   },
   opts = {
     view_options = {
