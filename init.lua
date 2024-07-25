@@ -133,6 +133,9 @@ vim.opt.spelloptions:append 'camel'
 -- Make the jump list behave like a stack instead of the slightly unusual way that it normally behaves
 vim.opt.jumpoptions:append 'stack'
 
+-- Make tab completion in command mode only complete up to the longest common prefix
+vim.opt.wildmode = 'full:longest'
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
