@@ -486,7 +486,7 @@ require('lazy').setup({
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
 
       -- Make it easier to find recently opened files
-      'mollerhoj/telescope-recent-files.nvim',
+      'ronandalton/telescope-recent-files.nvim',
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
