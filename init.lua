@@ -484,6 +484,9 @@ require('lazy').setup({
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+      -- Make it easier to find recently opened files
+      'mollerhoj/telescope-recent-files.nvim',
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -563,6 +566,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'aerial')
+      pcall(require('telescope').load_extension, 'recent-files')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -572,10 +576,12 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sF', function()
         builtin.find_files { no_ignore = true }
       end, { desc = '[S]earch [F]iles (no ignore)' })
-      vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = '[S]earch [F]iles' }) -- Alternate keybind
+      vim.keymap.set('n', '<C-p>', function()
+        require('telescope').extensions['recent-files'].recent_files {}
+      end, { desc = 'Search Files (smart)' })
       vim.keymap.set('n', '<C-S-P>', function()
-        builtin.find_files { no_ignore = true }
-      end, { desc = '[S]earch [F]iles (no ignore)' })
+        require('telescope').extensions['recent-files'].recent_files { no_ignore = true }
+      end, { desc = 'Search Files (smart) (no ignore)' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set({ 'n', 'v' }, '<leader>sW', function()
