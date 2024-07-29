@@ -22,4 +22,14 @@ return {
       ['<C-S-s>'] = 'actions.select_vsplit',
     },
   },
+  config = function(_, opts)
+    require('oil').setup(opts)
+
+    -- Mimic some commands that would have been provided by Netrw
+    vim.api.nvim_create_user_command('Explore', 'Oil', {})
+    vim.api.nvim_create_user_command('Hexplore', 'belowright split | Oil', {})
+    vim.api.nvim_create_user_command('Sexplore', 'split | Oil', {})
+    vim.api.nvim_create_user_command('Vexplore', 'leftabove vertical Oil', {})
+    vim.api.nvim_create_user_command('Texplore', 'tab Oil', {})
+  end,
 }
