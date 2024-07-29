@@ -14,6 +14,6 @@ return {
   },
   config = function(_, opts)
     require('aerial').setup(opts)
-    vim.keymap.set('n', '<leader>oo', '<cmd>AerialToggle!<CR>', { desc = '[Open] [o]verview window' })
+    vim.keymap.set('n', '<leader>oo', '<cmd>AerialToggle!<CR>', { desc = '[O]pen [o]verview window' })
   end,
 }
