@@ -297,6 +297,12 @@ vim.cmd [[ab ruetnr return]]
 vim.cmd [[ab reutrn return]]
 vim.cmd [[ab ruetrn return]]
 
+-- [[ Custom User Commands ]]
+
+-- Add missing :seethe command to complement :cope
+vim.api.nvim_create_user_command('Seethe', 'cclose', {})
+vim.cmd [[cnoreabbrev seethe Seethe]]
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
