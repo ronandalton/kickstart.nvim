@@ -1,24 +1,19 @@
--- Note: this could be reimplemented using get_location from aerial.nvim instead of nvim-gps
 local function get_custom_treesitter_source()
   local bar = require 'dropbar.bar'
   return {
     get_symbols = function(_, _, _)
-      local data = require('nvim-gps').get_data()
-
-      if data == nil then
-        return {}
-      end
+      local items = require('aerial').get_location(true)
 
       local symbols = {}
 
-      for _, item in ipairs(data) do
+      for _, item in ipairs(items) do
         table.insert(
           symbols,
           bar.dropbar_symbol_t:new {
             -- Note we just highlight each symbol as if it's a function for simplicity
             icon = item.icon,
             icon_hl = 'DropBarIconKindFunction',
-            name = item.text,
+            name = item.name,
             name_hl = 'DropBarKindFunction',
             on_clock = nil,
           }
@@ -35,13 +30,7 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     'nvim-telescope/telescope-fzf-native.nvim',
-    {
-      'ColinKennedy/nvim-gps', -- fork of SmiteshP/nvim-gps (which is archived) with some bug fixes
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-      },
-      opts = {},
-    },
+    'stevearc/aerial.nvim',
   },
   opts = {
     sources = {
