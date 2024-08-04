@@ -1,5 +1,6 @@
 return {
   'mg979/vim-visual-multi',
+  cond = false,
   init = function()
     -- Hack around issue with conflicting insert mode <BS> mapping
     -- between this plugin and nvim-autopairs
