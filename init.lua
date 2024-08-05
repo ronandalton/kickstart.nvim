@@ -172,8 +172,8 @@ vim.opt.tagcase = 'match'
 vim.opt.exrc = true
 
 -- Customize shada to not save registers and search/command/input-line history
-vim.opt.shada:append { '<0', '/0', ':0', '@0' }
-vim.opt.shada:remove { '<50' }
+vim.opt.shada:append { '<0', '/0', ':0', '@0', "'500" }
+vim.opt.shada:remove { '<50', "'100" }
 
 -- Start vim with an empty jump list
 vim.cmd 'autocmd VimEnter * :clearjumps'
