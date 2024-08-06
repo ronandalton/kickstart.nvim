@@ -1089,7 +1089,6 @@ require('lazy').setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup {
         custom_textobjects = {
-          a = spec_treesitter { a = '@parameter.outer', i = '@parameter.inner' },
           f = spec_treesitter { a = '@function.outer', i = '@function.inner' },
           c = spec_treesitter { a = '@class.outer', i = '@class.inner' },
         },
