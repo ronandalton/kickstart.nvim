@@ -818,6 +818,24 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
+            -- Allow disabling LSP for a project.
+            -- Example usage: put `let disable_lsp=v:true` in the project's .exrc file
+            server.root_dir = function(filename, bufnr)
+              if vim.g.disable_lsp then
+                return nil
+              end
+
+              return require('lspconfig.server_configurations.' .. server_name).default_config.root_dir(filename, bufnr)
+            end
+            -- Alternatively we could use `server.autostart = false` which is simpler.
+            -- However, this wouldn't be configurable on a per-project basis.
+
+            -- lspconfig will fall back to single file mode for servers that support it when
+            -- root_dir is nil. When vim.g.disable_lsp is true, we don't want this to happen,
+            -- so just turn off single file support altogether.
+            server.single_file_support = false
+
             require('lspconfig')[server_name].setup(server)
           end,
         },
