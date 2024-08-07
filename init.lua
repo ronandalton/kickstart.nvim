@@ -1088,6 +1088,12 @@ require('lazy').setup({
           text = '#2c3a80',
         }
       end,
+      on_highlights = function(highlights)
+        highlights.LspSignatureActiveParameter = {
+          bg = '#3b4261',
+          bold = true, -- same as default
+        }
+      end,
     },
   },
 
