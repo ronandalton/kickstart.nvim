@@ -562,6 +562,9 @@ require('lazy').setup({
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          ['recent-files'] = {
+            hidden = true,
+          },
         },
       }
 
@@ -579,11 +582,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sF', function()
         builtin.find_files { no_ignore = true }
       end, { desc = '[S]earch [F]iles (no ignore)' })
-      vim.keymap.set('n', '<C-p>', function()
-        require('telescope').extensions['recent-files'].recent_files { hidden = true }
-      end, { desc = 'Search Files (smart)' })
+      vim.keymap.set('n', '<C-p>', require('telescope').extensions['recent-files'].recent_files, { desc = 'Search Files (smart)' })
       vim.keymap.set('n', '<C-S-P>', function()
-        require('telescope').extensions['recent-files'].recent_files { hidden = true, no_ignore = true }
+        require('telescope').extensions['recent-files'].recent_files { no_ignore = true }
       end, { desc = 'Search Files (smart) (no ignore)' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
