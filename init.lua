@@ -298,7 +298,7 @@ vim.cmd [[ab ruetrn return]]
 -- [[ Custom User Commands ]]
 
 -- Add missing :seethe command to complement :cope
-vim.api.nvim_create_user_command('Seethe', 'cclose', {})
+vim.api.nvim_create_user_command('Seethe', 'cclose | echo ":seethe"', {})
 vim.cmd [[cnoreabbrev seethe Seethe]]
 
 -- [[ Basic Autocommands ]]
