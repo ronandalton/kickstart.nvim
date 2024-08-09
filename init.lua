@@ -847,7 +847,7 @@ require('lazy').setup({
   { -- Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
+    cmd = { 'ConformInfo', 'FormatDisable', 'FormatEnable', 'FormatToggle' },
     keys = {
       {
         '<leader>f',
@@ -856,6 +856,22 @@ require('lazy').setup({
         end,
         mode = '',
         desc = '[F]ormat buffer',
+      },
+      {
+        '<leader>tf',
+        function()
+          vim.cmd [[FormatToggle]]
+        end,
+        mode = 'n',
+        desc = '[T]oggle [f]ormat on save',
+      },
+      {
+        '<leader>tF',
+        function()
+          vim.cmd [[FormatToggle!]]
+        end,
+        mode = 'n',
+        desc = '[T]oggle [f]ormat on save (current buffer)',
       },
     },
     opts = {
@@ -924,14 +940,6 @@ require('lazy').setup({
         desc = 'Toggle autoformat-on-save',
         bang = true,
       })
-
-      vim.keymap.set('n', '<leader>tf', function()
-        vim.cmd [[FormatToggle]]
-      end, { desc = '[T]oggle [f]ormat on save' })
-
-      vim.keymap.set('n', '<leader>tF', function()
-        vim.cmd [[FormatToggle!]]
-      end, { desc = '[T]oggle [f]ormat on save (current buffer)' })
     end,
   },
 
