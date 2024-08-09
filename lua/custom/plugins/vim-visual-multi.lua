@@ -17,6 +17,7 @@ return {
 
         ---@diagnostic disable-next-line: missing-parameter
         require('lualine').hide()
+        require('illuminate').pause()
       end,
     })
     vim.api.nvim_create_autocmd('User', {
@@ -26,6 +27,7 @@ return {
 
         ---@diagnostic disable-next-line: missing-fields
         require('lualine').hide { unhide = true }
+        require('illuminate').resume()
       end,
     })
   end,
