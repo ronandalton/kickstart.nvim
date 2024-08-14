@@ -175,6 +175,9 @@ vim.opt.exrc = true
 vim.opt.shada:append { '<0', '/0', ':0', '@0', "'500" }
 vim.opt.shada:remove { '<50', "'100" }
 
+-- Don't display intro screen on startup
+vim.opt.shortmess:append 'I'
+
 -- Start vim with an empty jump list
 vim.cmd 'autocmd VimEnter * :clearjumps'
 
