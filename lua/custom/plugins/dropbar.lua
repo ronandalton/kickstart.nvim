@@ -73,4 +73,20 @@ return {
       end,
     },
   },
+  config = function(_, opts)
+    require('dropbar').setup(opts)
+
+    -- Workaround for Fugitive blame being unaligned with buffer because of winbar
+    -- https://github.com/Bekaboo/dropbar.nvim/issues/165#issuecomment-2191480912
+    -- Relevant Neovim issue: https://github.com/neovim/neovim/issues/22189
+    vim.api.nvim_create_autocmd('FileType', {
+      desc = 'Set local options for fugitive blame buffers.',
+      group = vim.api.nvim_create_augroup('FugitiveSettings', {}),
+      pattern = 'fugitiveblame',
+      callback = function()
+        local win_alt = vim.fn.win_getid(vim.fn.winnr '#')
+        vim.opt_local.winbar = vim.api.nvim_win_is_valid(win_alt) and vim.wo[win_alt].winbar ~= '' and ' ' or ''
+      end,
+    })
+  end,
 }
