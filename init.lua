@@ -529,8 +529,13 @@ require('lazy').setup({
           mappings = {
             i = {
               ['<M-j>'] = 'move_selection_next',
-              ['<M-k>'] = 'move_selection_previous', -- overrides results_scrolling_right - use normal mode instead if needed
+              ['<M-k>'] = 'move_selection_previous', -- overrides results_scrolling_right
               ['<M-l>'] = 'select_default',
+              ['<M-;>'] = 'results_scrolling_right', -- alternative for <M-k>
+            },
+            n = {
+              ['<M-k>'] = false, -- to avoid accidental triggering of results_scrolling_right
+              ['<M-;>'] = 'results_scrolling_right', -- alternative for <M-k>
             },
           },
           layout_strategy = 'flex',
