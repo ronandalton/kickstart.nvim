@@ -548,6 +548,11 @@ require('lazy').setup({
               flip_lines = 40,
             },
           },
+          path_display = {
+            filename_first = {
+              reverse_directories = false,
+            },
+          },
           file_ignore_patterns = {
             '%.git/',
           },
