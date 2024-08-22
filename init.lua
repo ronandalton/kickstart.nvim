@@ -189,6 +189,28 @@ vim.cmd 'autocmd VimEnter * :clearjumps'
 -- Enable the builtin cfilter plugin to allow filtering the quickfix list with the :Cfilter and :Lfilter commands
 vim.cmd 'packadd cfilter'
 
+-- Add improved :DiffOrig command
+vim.cmd [[
+function s:DiffOrig()
+  let l:filetype = &ft
+  let l:has_winbar = &winbar != ""
+  noswapfile leftabove vert new
+  if l:has_winbar
+    " Work around alignment issue by adding empty winbar if needed
+    setlocal winbar=\ 
+  endif
+  set buftype=nofile
+  read ++edit #
+  0d_
+  exe "setlocal nomodifiable bufhidden=wipe nobuflisted filetype=" . l:filetype
+  diffthis
+  wincmd p
+  diffthis
+endfunction
+
+command DiffOrig call s:DiffOrig()
+]]
+
 -- Allow deleting items in quickfix list with 'dd'
 vim.cmd [[
 function! RemoveQFItem()
