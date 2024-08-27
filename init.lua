@@ -606,6 +606,7 @@ require('lazy').setup({
             require('telescope.themes').get_dropdown(),
           },
           ['recent-files'] = {
+            include_current_file = true,
             hidden = true,
           },
         },
