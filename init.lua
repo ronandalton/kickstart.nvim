@@ -122,9 +122,6 @@ vim.opt.breakindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Turn on spellcheck by default
-vim.opt.spell = true
-
 -- Disable spellcheck in places where it shouldn't be enabled
 vim.cmd 'au TermOpen * setlocal nospell'
 vim.cmd 'au FileType qf,checkhealth,git setlocal nospell'
@@ -864,6 +861,11 @@ require('lazy').setup({
             },
           },
         },
+        typos_lsp = {
+          init_options = {
+            diagnosticSeverity = 'Info',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -905,8 +907,11 @@ require('lazy').setup({
 
             -- lspconfig will fall back to single file mode for servers that support it when
             -- root_dir is nil. When vim.g.disable_lsp is true, we don't want this to happen,
-            -- so just turn off single file support altogether.
-            server.single_file_support = false
+            -- so just turn off single file support altogether for all LSPs other than typos_lsp
+            -- (since it will not work if this is disabled).
+            if server_name ~= 'typos_lsp' then
+              server.single_file_support = false
+            end
 
             require('lspconfig')[server_name].setup(server)
           end,
