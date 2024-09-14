@@ -183,6 +183,14 @@ vim.opt.shortmess:append 'I'
 -- Start vim with an empty jump list
 vim.cmd 'autocmd VimEnter * :clearjumps'
 
+-- Fix odd Python indentation style
+vim.cmd [[
+let g:python_indent = {}
+let g:python_indent.open_paren = 'shiftwidth()'
+let g:python_indent.continue = 'shiftwidth()'
+let g:python_indent.closed_paren_align_last_line = v:false
+]]
+
 -- Enable the builtin cfilter plugin to allow filtering the quickfix list with the :Cfilter and :Lfilter commands
 vim.cmd 'packadd cfilter'
 
