@@ -904,22 +904,11 @@ require('lazy').setup({
 
             -- Allow disabling LSP for a project.
             -- Example usage: put `let disable_lsp=v:true` in the project's .exrc file
-            server.root_dir = function(filename, bufnr)
-              if vim.g.disable_lsp then
-                return nil
-              end
-
-              return require('lspconfig.server_configurations.' .. server_name).default_config.root_dir(filename, bufnr)
-            end
-            -- Alternatively we could use `server.autostart = false` which is simpler.
-            -- However, this wouldn't be configurable on a per-project basis.
-
-            -- lspconfig will fall back to single file mode for servers that support it when
-            -- root_dir is nil. When vim.g.disable_lsp is true, we don't want this to happen,
-            -- so just turn off single file support altogether for all LSPs other than typos_lsp
-            -- (since it will not work if this is disabled).
             if server_name ~= 'typos_lsp' then
-              server.single_file_support = false
+              -- NOTE: should_attach option is specific to my fork
+              server.should_attach = function()
+                return not vim.g.disable_lsp
+              end
             end
 
             require('lspconfig')[server_name].setup(server)
