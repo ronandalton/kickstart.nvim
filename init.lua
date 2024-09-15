@@ -713,7 +713,8 @@ require('lazy').setup({
   { 'Bilal2453/luvit-meta', lazy = true },
   {
     -- Main LSP Configuration
-    'neovim/nvim-lspconfig',
+    'ronandalton/nvim-lspconfig', -- use my custom fork (also changed in typescript-tools.lua,)
+    branch = 'custom',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
