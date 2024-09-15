@@ -903,7 +903,7 @@ require('lazy').setup({
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
             -- Allow disabling LSP for a project.
-            -- Example usage: put `let disable_lsp=v:true` in the project's .exrc file
+            -- Example usage: put `let g:disable_lsp = v:true` in the project's .nvimrc file
             if server_name ~= 'typos_lsp' then
               -- NOTE: should_attach option is specific to my fork
               server.should_attach = function()
