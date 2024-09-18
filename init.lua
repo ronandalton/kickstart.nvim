@@ -298,6 +298,10 @@ vim.keymap.set({ 'n', 'v' }, '<M-k>', '<c-y>', { remap = true })
 vim.keymap.set({ 'n', 'v' }, '<M-l>', '<c-d>', { remap = true })
 vim.keymap.set({ 'n', 'v' }, '<M-h>', '<c-u>', { remap = true })
 
+-- Keymaps for quickly jumping to the next/previous quickfix item
+vim.keymap.set('n', '<M-.>', '<cmd>cnext<CR>', { desc = 'Go to next quickfix item' })
+vim.keymap.set('n', '<M-,>', '<cmd>cprev<CR>', { desc = 'Go to previous quickfix item' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
