@@ -126,6 +126,9 @@ vim.opt.smartcase = true
 vim.cmd 'au TermOpen * setlocal nospell'
 vim.cmd 'au FileType qf,checkhealth,git setlocal nospell'
 
+-- Explicitly enable spellcheck for when writing git commit messages
+vim.cmd 'au FileType gitcommit setlocal spell'
+
 -- Disable spellcheckMap checking that words at the start of sentences are capitalized
 vim.opt.spellcapcheck = ''
 
@@ -915,6 +918,20 @@ require('lazy').setup({
               -- NOTE: should_attach option is specific to my fork
               server.should_attach = function()
                 return not vim.g.disable_lsp
+              end
+            else
+              server.should_attach = function()
+                -- There's no use showing errors you can't fix
+                if vim.bo.readonly then
+                  return false
+                end
+
+                -- Disable since we use builtin spell check for gitcommit files
+                if vim.bo.filetype == 'gitcommit' then
+                  return false
+                end
+
+                return true
               end
             end
 
