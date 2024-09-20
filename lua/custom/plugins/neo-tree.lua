@@ -24,7 +24,13 @@ return {
         leave_dirs_open = false,
       },
       filtered_items = {
-        visible = true,
+        hide_dotfiles = false,
+      },
+      window = {
+        mappings = {
+          ['l'] = 'open', -- bound to 'focus_preview' by default
+          ['L'] = 'focus_preview', -- alternative binding
+        },
       },
     },
   },
