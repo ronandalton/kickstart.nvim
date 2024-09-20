@@ -926,8 +926,9 @@ require('lazy').setup({
                   return false
                 end
 
-                -- Disable since we use builtin spell check for gitcommit files
-                if vim.bo.filetype == 'gitcommit' then
+                -- Note: disabled for gitcommit files since the builtin spellcheck is used instead
+                local ft = vim.bo.filetype
+                if ft == 'gitcommit' or ft == 'gitrebase' or ft == 'xxd' then
                   return false
                 end
 
