@@ -1,6 +1,12 @@
 return {
   'MagicDuck/grug-far.nvim',
-  opts = {},
+  opts = {
+    history = {
+      autoSave = {
+        enabled = false,
+      },
+    },
+  },
   config = function(_, opts)
     require('grug-far').setup(opts)
 
