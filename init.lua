@@ -615,6 +615,9 @@ require('lazy').setup({
           history = false,
         },
         pickers = {
+          builtin = {
+            include_extensions = true,
+          },
           buffers = {
             sort_lastused = true,
             sort_mru = true,
