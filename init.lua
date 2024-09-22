@@ -612,6 +612,7 @@ require('lazy').setup({
           file_ignore_patterns = {
             '%.git/',
           },
+          history = false,
         },
         pickers = {
           buffers = {
