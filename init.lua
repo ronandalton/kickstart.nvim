@@ -259,7 +259,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Copy text to system c
 vim.keymap.set('n', '<leader>Y', '"+y$', { desc = 'Copy text to system clipboard' })
 
 -- Keymap to delete text without it being put in the clipboard
-vim.keymap.set({ 'n', 'v' }, '<leader>D', '"_d', { desc = 'Delete text without yanking it' })
+vim.keymap.set({ 'n', 'v' }, '<leader>x', '"_d', { desc = 'Delete text without yanking it' })
+vim.keymap.set({ 'n' }, '<leader>xx', '"_dd', { desc = 'Delete text without yanking it (line)' })
 
 -- Keymap for toggling display of relative line numbers
 vim.keymap.set('n', '<leader>tn', '<cmd>set relativenumber!<CR>', { desc = '[T]oggle relative line [n]umbers' })
