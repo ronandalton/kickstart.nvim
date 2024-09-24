@@ -785,45 +785,65 @@ require('lazy').setup({
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client == nil then
+            return
+          end
+
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_definition) then
+            map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          end
 
           -- Find references for the word under your cursor.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_references) then
+            map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          end
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_implementation) then
+            map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          end
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_typeDefinition) then
+            map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          end
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          if client.supports_method(vim.lsp.protocol.Methods.workspace_symbol) then
+            map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          end
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_rename) then
+            map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          end
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
+            map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          end
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_declaration) then
+            map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          end
 
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
           --
           -- This may be unwanted, since they displace some of your code
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
