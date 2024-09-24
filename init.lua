@@ -289,6 +289,11 @@ end, { desc = '[T]oggle between [t]abstop sizes of 4 and 8' })
 -- Keymap for toggling line wrap
 vim.keymap.set('n', '<leader>tw', '<cmd>set wrap!<CR>', { desc = '[T]oggle line [w]rap' })
 
+-- Keymap for toggling diagnostics globally
+vim.keymap.set('n', '<leader>td', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = '[T]oggle [d]iagnostics globally' })
+
 -- Keymap to automatically fix currently misspelled word under cursor with first suggestion
 vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under cursor' })
 
