@@ -98,6 +98,13 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- Define the default colorscheme to load at startup in absence of a previous colorscheme
+vim.g.COLORSCHEME = 'tokyonight-night'
+
+-- Define the default light and dark theme variants for use by the theme toggle keymap
+local dark_theme = 'tokyonight-night'
+local light_theme = 'tokyonight-day'
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -268,10 +275,10 @@ vim.keymap.set('n', '<leader>tn', '<cmd>set relativenumber!<CR>', { desc = '[T]o
 -- Keymap for switching between light and dark themes
 vim.keymap.set('n', '<leader>tl', function()
   if vim.g.is_light_mode then
-    vim.cmd.colorscheme 'tokyonight-night'
+    vim.cmd.colorscheme(dark_theme)
     vim.g.is_light_mode = false
   else
-    vim.cmd.colorscheme 'tokyonight-day'
+    vim.cmd.colorscheme(light_theme)
     vim.g.is_light_mode = true
   end
 end, { desc = '[T]oggle between [l]ight and dark mode' })
@@ -378,6 +385,19 @@ vim.cmd [[
       \ | endif
   augroup END
 ]]
+
+-- Persist the chosen colorscheme between sessions
+vim.api.nvim_create_autocmd('VimEnter', {
+  nested = true,
+  callback = function()
+    pcall(vim.cmd.colorscheme, vim.g.COLORSCHEME)
+  end,
+})
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function(params)
+    vim.g.COLORSCHEME = params.match
+  end,
+})
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -1216,7 +1236,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
