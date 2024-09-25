@@ -26,11 +26,11 @@ return {
       filtered_items = {
         hide_dotfiles = false,
       },
-      window = {
-        mappings = {
-          ['l'] = 'open', -- bound to 'focus_preview' by default
-          ['L'] = 'focus_preview', -- alternative binding
-        },
+    },
+    window = {
+      mappings = {
+        ['l'] = 'open', -- bound to 'focus_preview' by default
+        ['L'] = 'focus_preview', -- alternative binding
       },
     },
   },
