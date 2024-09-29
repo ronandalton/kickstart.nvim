@@ -6,6 +6,10 @@ return {
         enabled = false,
       },
     },
+    keymaps = {
+      openNextLocation = { n = 'J' },
+      openPrevLocation = { n = 'K' },
+    },
   },
   config = function(_, opts)
     require('grug-far').setup(opts)
