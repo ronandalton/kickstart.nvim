@@ -765,6 +765,12 @@ require('lazy').setup({
           colorscheme = {
             enable_preview = true,
           },
+          keymaps = {
+            lhs_filter = function(lhs)
+              -- Get rid of entries that are which-key <nop> mappings
+              return not string.find(lhs, 'Þ')
+            end,
+          },
         },
         extensions = {
           ['ui-select'] = {
