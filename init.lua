@@ -148,6 +148,104 @@ vim.opt.jumpoptions:append 'stack'
 -- Restore view when jumping backwards and forwards
 vim.opt.jumpoptions:append 'view'
 
+-- Sync the jump stack and tag stack so ctrl-t and ctrl-o work together better
+-- TODO: make code cleaner and more robust
+local do_jump = function(jumping_backwards, is_big_jump)
+  local send_keys = function(keys)
+    local translated_keys = vim.api.nvim_replace_termcodes(keys, true, false, true)
+    vim.api.nvim_feedkeys(translated_keys, 'n', false)
+  end
+
+  local win_id = vim.fn.win_getid()
+
+  local tag_stack = vim.fn.gettagstack(win_id)
+  local tag_idx = tag_stack.curidx
+
+  local jump_locations, jump_idx = unpack(vim.fn.getjumplist(win_id))
+  jump_idx = jump_idx + 1 -- 0-indexed but we want 1-indexed
+
+  if jumping_backwards then
+    if is_big_jump then
+      if tag_idx <= 1 then
+        -- no tag to jump back to, let nvim display error to user
+        send_keys '<c-t>'
+        return
+      end
+    else -- is small jump
+      if jump_idx <= 1 then
+        -- this should have no effect
+        send_keys '<c-o>'
+        return
+      end
+    end
+  else -- jumping forwards
+    if is_big_jump then
+      if tag_idx > tag_stack.length then
+        -- no tag to jump forward to, let nvim display error to user
+        send_keys ':tag<CR>'
+        return
+      end
+    else -- is small jump
+      if jump_idx >= #jump_locations then
+        -- this should have no effect
+        send_keys '<c-i>'
+        return
+      end
+    end
+  end
+
+  local dir = jumping_backwards and -1 or 1
+
+  if is_big_jump then
+    local target = tag_stack.items[tag_idx + (jumping_backwards and -1 or 0)]
+    local count = 0
+    local found_target = false
+
+    for i = jump_idx + dir, dir == -1 and 1 or #jump_locations, dir do
+      local this = jump_locations[i]
+      count = count + 1
+
+      if this.bufnr == target.from[1] and this.lnum == target.from[2] and this.col == target.from[3] - 1 then
+        found_target = true
+        break
+      end
+    end
+
+    if found_target then
+      vim.fn.settagstack(win_id, { curidx = tag_idx + dir })
+      send_keys(tostring(count) .. (dir == -1 and '<c-o>' or '<c-i>'))
+      return
+    else
+      -- TODO: handle error case where match isn't found
+      return
+    end
+  else -- is small jump
+    if not (jumping_backwards and tag_idx <= 1 or not jumping_backwards and tag_idx > tag_stack.length) then
+      local next = jump_locations[jump_idx + (dir == -1 and -1 or 0)]
+      local target = tag_stack.items[tag_idx + (jumping_backwards and -1 or 0)]
+
+      if next.bufnr == target.from[1] and next.lnum == target.from[2] and next.col == target.from[3] - 1 then
+        vim.fn.settagstack(win_id, { curidx = tag_idx + dir })
+      end
+    end
+
+    send_keys(dir == -1 and '<c-o>' or '<c-i>')
+    return
+  end
+end
+
+vim.keymap.set('n', '<c-t>', function()
+  do_jump(true, true)
+end)
+
+vim.keymap.set('n', '<c-o>', function()
+  do_jump(true, false)
+end)
+
+vim.keymap.set('n', '<c-i>', function()
+  do_jump(false, false)
+end)
+
 -- Make tab completion in command mode only complete up to the longest common prefix
 vim.opt.wildmode = 'full:longest'
 
