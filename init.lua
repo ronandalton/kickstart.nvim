@@ -358,9 +358,29 @@ vim.keymap.set('n', '<leader>ts', '<cmd>set spell!<CR>', { desc = '[T]oggle [s]p
 -- Remap to yank a text region without the cursor moving to the start of the block
 vim.keymap.set('v', 'y', 'ygv<Esc>')
 
--- Make j and k motions append to the jump list when moving multiple lines away
-vim.cmd [[nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k']]
-vim.cmd [[nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j']]
+-- Function to get the rhs of a mapping for j or k.
+-- The resulting mapping will add to the jump list when jumping multiple lines
+-- up or down and make movement more natural when line wrapping is enabled.
+local get_jk_mapping = function(key)
+  if vim.v.count > 1 then
+    return "m'" .. vim.v.count .. key
+  end
+
+  local mode = vim.fn.mode()
+  if vim.fn.reg_recording() == '' and vim.v.count ~= 1 and (mode == 'n' or mode == 'v') then
+    return 'g' .. key
+  end
+
+  return key
+end
+
+-- Improve default behavior of j and k
+vim.keymap.set({ 'n', 'x' }, 'j', function()
+  return get_jk_mapping 'j'
+end, { expr = true })
+vim.keymap.set({ 'n', 'x' }, 'k', function()
+  return get_jk_mapping 'k'
+end, { expr = true })
 
 -- Keymap to easily copy text to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { desc = 'Copy text to system clipboard' })
