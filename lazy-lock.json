@@ -1,5 +1,4 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "LuaSnip": { "branch": "master", "commit": "7552e6504ee95a9c8cfc6db53e389122ded46cd4" },
   "aerial.nvim": { "branch": "master", "commit": "e75a3df2c20b3a98c786f5e61587d74a7a6b61d6" },
   "cellular-automaton.nvim": { "branch": "main", "commit": "11aea08aa084f9d523b0142c2cd9441b8ede09ed" },
