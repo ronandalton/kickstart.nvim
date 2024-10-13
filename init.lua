@@ -390,6 +390,9 @@ vim.keymap.set('n', '<leader>Y', '"+y$', { desc = 'Copy text to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>x', '"_d', { desc = 'Delete text without yanking it' })
 vim.keymap.set({ 'n' }, '<leader>xx', '"_dd', { desc = 'Delete text without yanking it (line)' })
 
+-- Keymap for formatting current paragraph
+vim.keymap.set('n', '<leader>.', 'gwip', { desc = 'Format text in paragraph' })
+
 -- Keymap for toggling display of relative line numbers
 vim.keymap.set('n', '<leader>tn', '<cmd>set relativenumber!<CR>', { desc = '[T]oggle relative line [n]umbers' })
 
@@ -422,6 +425,18 @@ vim.keymap.set('n', '<leader>tw', '<cmd>set wrap!<CR>', { desc = '[T]oggle line 
 vim.keymap.set('n', '<leader>td', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = '[T]oggle [d]iagnostics globally' })
+
+-- Keymap for toggling automatic formatting while editing a paragraph
+vim.keymap.set('n', '<leader>tp', function()
+  if not string.find(vim.o.formatoptions, 'a', 1, true) then
+    -- can't do vim.opt.formatoptions:append { 'a' } as it doesn't work (bug??)
+    vim.cmd [[set formatoptions+=a]]
+    vim.cmd [[echo 'Automatic paragraph reflow enabled']]
+  else
+    vim.cmd [[set formatoptions-=a]]
+    vim.cmd [[echo 'Automatic paragraph reflow disabled']]
+  end
+end, { desc = '[T]oggle [p]aragraph reflow' })
 
 -- Keymap to automatically fix currently misspelled word under cursor with first suggestion
 vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under cursor' })
