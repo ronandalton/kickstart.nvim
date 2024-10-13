@@ -442,7 +442,8 @@ end, { desc = '[T]oggle [p]aragraph reflow' })
 vim.keymap.set('n', '<leader>C', '1z=', { desc = 'Auto-fix misspelled word under cursor' })
 
 -- Keymap to help set up a find and replace for the current word under the cursor
-vim.keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]], { desc = '[R]e[p]lace word in buffer' })
+vim.keymap.set('n', '<leader>rp', [[:.,$s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]], { desc = '[R]e[p]lace word from current line onwards' })
+vim.keymap.set('n', '<leader>rP', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]], { desc = '[R]e[p]lace word in buffer' })
 
 -- Remaps to make scroll keys easier to reach
 vim.keymap.set({ 'n', 'v' }, '<M-j>', '<c-e>', { remap = true })
