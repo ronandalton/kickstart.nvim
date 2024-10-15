@@ -391,7 +391,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>x', '"_d', { desc = 'Delete text without y
 vim.keymap.set({ 'n' }, '<leader>xx', '"_dd', { desc = 'Delete text without yanking it (line)' })
 
 -- Keymap for formatting current paragraph
-vim.keymap.set('n', '<leader>.', 'gwip', { desc = 'Format text in paragraph' })
+vim.keymap.set('n', '<leader>.', 'gwip', { desc = 'Reflow text in paragraph' })
+vim.keymap.set('x', '<leader>.', 'gw', { desc = 'Reflow text' })
 
 -- Keymap for toggling display of relative line numbers
 vim.keymap.set('n', '<leader>tn', '<cmd>set relativenumber!<CR>', { desc = '[T]oggle relative line [n]umbers' })
