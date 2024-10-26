@@ -367,7 +367,7 @@ local get_jk_mapping = function(key)
   end
 
   local mode = vim.fn.mode()
-  if vim.fn.reg_recording() == '' and vim.v.count ~= 1 and (mode == 'n' or mode == 'v') then
+  if vim.v.count ~= 1 and (mode == 'n' or mode == 'v') then
     return 'g' .. key
   end
 
