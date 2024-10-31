@@ -291,6 +291,9 @@ vim.opt.shada:remove { '<50', "'100" }
 -- Don't display intro screen on startup
 vim.opt.shortmess:append 'I'
 
+-- Fix lower priority LSP diagnostics being shown over higher priority ones
+vim.diagnostic.config { severity_sort = true }
+
 -- Start vim with an empty jump list
 vim.cmd 'autocmd VimEnter * :clearjumps'
 
