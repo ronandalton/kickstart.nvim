@@ -116,6 +116,11 @@ vim.opt.number = true
 -- Enable relative line numbers
 vim.opt.relativenumber = true
 
+-- Use 4 space indents by default
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = -1
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
