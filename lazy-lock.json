@@ -39,6 +39,7 @@
   "nvim-ufo": { "branch": "main", "commit": "4cc3ba9303c0708b81fd681786a4835fd31518ac" },
   "nvim-web-devicons": { "branch": "master", "commit": "5be6c4e685618b99c3210a69375b38a1202369b4" },
   "oil.nvim": { "branch": "master", "commit": "fcca212c2e966fc3dec1d4baf888e670631d25d1" },
+  "onedark.nvim": { "branch": "master", "commit": "67a74c275d1116d575ab25485d1bfa6b2a9c38a6" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "promise-async": { "branch": "main", "commit": "28c1d5a295eb5310afa2523d4ae9aa41ec5a9de2" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
