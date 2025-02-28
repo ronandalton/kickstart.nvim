@@ -1157,6 +1157,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         json = { 'jq' },
+        xml = { 'xmllint' }, -- requires libxml2 to be installed
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
