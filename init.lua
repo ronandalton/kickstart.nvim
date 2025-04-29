@@ -464,6 +464,10 @@ vim.keymap.set({ 'n', 'v' }, '<M-h>', '<c-u>', { remap = true })
 vim.keymap.set('n', '<M-.>', '<cmd>cnext<CR>', { desc = 'Go to next quickfix item' })
 vim.keymap.set('n', '<M-,>', '<cmd>cprev<CR>', { desc = 'Go to previous quickfix item' })
 
+-- Keymaps for quickly cycling through tab pages (alternative to gt and gT)
+vim.keymap.set('n', '<M-i>', '<cmd>tabnext<CR>', { desc = 'Go to next tab page' })
+vim.keymap.set('n', '<M-I>', '<cmd>tabprevious<CR>', { desc = 'Go to previous tab page' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
