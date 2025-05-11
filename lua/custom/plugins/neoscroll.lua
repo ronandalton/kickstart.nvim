@@ -1,22 +1,30 @@
 return {
   'karb94/neoscroll.nvim',
-  config = function()
-    require('neoscroll').setup {
-      easing_function = 'quadratic',
+  opts = {
+    easing_function = 'quadratic',
+  },
+  config = function(_, opts)
+    require('neoscroll').setup(opts)
+
+    neoscroll = require 'neoscroll'
+
+    local keymaps = {
+      -- stylua: ignore start
+      ['<C-u>'] = function() neoscroll.ctrl_u { duration = 170 } end,
+      ['<C-d>'] = function() neoscroll.ctrl_d { duration = 170 } end,
+      ['<C-b>'] = function() neoscroll.ctrl_b { duration = 220 } end,
+      ['<C-f>'] = function() neoscroll.ctrl_f { duration = 220 } end,
+      ['<C-y>'] = function() neoscroll.scroll(-0.1, { move_cursor = false, duration = 80 }) end,
+      ['<C-e>'] = function() neoscroll.scroll(0.1, { move_cursor = false, duration = 80 }) end,
+      ['zt'] = function() neoscroll.zt { half_win_duration = 75 } end,
+      ['zz'] = function() neoscroll.zz { half_win_duration = 90 } end,
+      ['zb'] = function() neoscroll.zb { half_win_duration = 75 } end,
+      -- stylua: ignore end
     }
 
-    local t = {}
-    -- Syntax: t[keys] = {function, {function arguments}}
-    t['<C-u>'] = { 'scroll', { '-vim.wo.scroll', 'true', '170' } }
-    t['<C-d>'] = { 'scroll', { 'vim.wo.scroll', 'true', '170' } }
-    t['<C-b>'] = { 'scroll', { '-vim.api.nvim_win_get_height(0)', 'true', '220' } }
-    t['<C-f>'] = { 'scroll', { 'vim.api.nvim_win_get_height(0)', 'true', '220' } }
-    t['<C-y>'] = { 'scroll', { '-0.10', 'false', '80' } }
-    t['<C-e>'] = { 'scroll', { '0.10', 'false', '80' } }
-    t['zt'] = { 'zt', { '75' } }
-    t['zz'] = { 'zz', { '90' } }
-    t['zb'] = { 'zb', { '75' } }
-
-    require('neoscroll.config').set_mappings(t)
+    local modes = { 'n', 'v', 'x' }
+    for key, func in pairs(keymaps) do
+      vim.keymap.set(modes, key, func)
+    end
   end,
 }
