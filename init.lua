@@ -867,8 +867,14 @@ require('lazy').setup({
     branch = 'custom',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
-      'williamboman/mason-lspconfig.nvim',
+
+      -- NOTE: Mason version is locked to v1 because v2 removes the handlers setting which
+      -- is used to set up my custom should_attach function for servers.
+      { 'williamboman/mason.nvim', tag = 'v1.11.0', config = true }, -- NOTE: Must be loaded before dependants
+      {
+        'williamboman/mason-lspconfig.nvim',
+        tag = 'v1.32.0',
+      },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
