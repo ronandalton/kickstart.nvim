@@ -466,10 +466,6 @@ vim.keymap.set({ 'n', 'v' }, '<M-k>', '<c-y>', { remap = true })
 vim.keymap.set({ 'n', 'v' }, '<M-l>', '<c-d>', { remap = true })
 vim.keymap.set({ 'n', 'v' }, '<M-h>', '<c-u>', { remap = true })
 
--- Keymaps for quickly jumping to the next/previous quickfix item
-vim.keymap.set('n', '<M-.>', '<cmd>cnext<CR>', { desc = 'Go to next quickfix item' })
-vim.keymap.set('n', '<M-,>', '<cmd>cprev<CR>', { desc = 'Go to previous quickfix item' })
-
 -- Keymaps for quickly cycling through tab pages (alternative to gt and gT)
 vim.keymap.set('n', '<M-i>', '<cmd>tabnext<CR>', { desc = 'Go to next tab page' })
 vim.keymap.set('n', '<M-I>', '<cmd>tabprevious<CR>', { desc = 'Go to previous tab page' })
