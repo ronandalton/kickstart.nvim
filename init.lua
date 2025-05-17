@@ -1335,9 +1335,11 @@ require('lazy').setup({
         preset = 'default',
 
         -- Custom mappings
-        ['<M-j>'] = { 'select_next', 'fallback' },
-        ['<M-k>'] = { 'select_prev', 'fallback' },
+        ['<M-j>'] = { 'select_next' },
+        ['<M-k>'] = { 'select_prev' },
         ['<M-l>'] = { 'select_and_accept' },
+        ['<C-l>'] = { 'snippet_forward' },
+        ['<C-h>'] = { 'snippet_backward' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
