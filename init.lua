@@ -624,7 +624,6 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
-      signs_staged_enable = false,
     },
   },
 
