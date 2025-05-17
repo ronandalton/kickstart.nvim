@@ -15,7 +15,7 @@ return {
     on_attach = function(bufnr)
       vim.keymap.set('n', '<M-[>', '<cmd>AerialPrev<CR>', { buffer = bufnr })
       vim.keymap.set('n', '<M-]>', '<cmd>AerialNext<CR>', { buffer = bufnr })
-      vim.keymap.set('n', '<leader>ds', require('telescope').extensions.aerial.aerial, { buffer = bufnr, desc = 'TS: [D]ocument [S]ymbols' })
+      vim.keymap.set('n', 'gO', require('telescope').extensions.aerial.aerial, { buffer = bufnr, desc = 'Open Document Symbols' })
     end,
   },
   config = function(_, opts)

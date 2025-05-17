@@ -11,8 +11,8 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '<leader>nf', '<cmd>Neotree toggle reveal<CR>', desc = '[N]eotree toggle [f]ile view' },
-    { '<leader>ng', '<cmd>Neotree toggle git_status<CR>', desc = '[N]eotree toggle [G]it view' },
+    { '<leader>nf', '<cmd>Neotree toggle reveal<CR>', desc = '[N]eotree toggle [f]ile view', silent = true },
+    { '<leader>ng', '<cmd>Neotree toggle git_status<CR>', desc = '[N]eotree toggle [G]it view', silent = true },
   },
   opts = {
     close_if_last_window = true,
