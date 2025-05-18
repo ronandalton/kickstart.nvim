@@ -19,7 +19,7 @@ return {
     vim.g.vindent_block_ending = { ')', ']', '}', 'end', 'else', 'elif', '</' }
   end,
   config = function()
-    vim.keymap.set('', '-', '[-', { remap = true })
-    vim.keymap.set('', '+', ']-', { remap = true })
+    vim.keymap.set({ 'n', 'x', 'o' }, '-', '[-', { remap = true })
+    vim.keymap.set({ 'n', 'x', 'o' }, '+', ']-', { remap = true })
   end,
 }
