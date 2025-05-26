@@ -101,6 +101,22 @@ vim.g.have_nerd_font = true
 -- Define the default colorscheme to load at startup in absence of a previous colorscheme
 vim.g.COLORSCHEME = 'tokyonight-night'
 
+-- Force usage of tmux clipboard when inside tmux so copying works reliably over SSH for existing sessions
+if vim.fn.environ()['TMUX'] ~= nil then
+  vim.g.clipboard = {
+    name = 'tmux',
+    copy = {
+      ['+'] = { 'tmux', 'load-buffer', '-w', '-' },
+      ['*'] = { 'tmux', 'load-buffer', '-w', '-' },
+    },
+    paste = {
+      ['+'] = { 'tmux', 'save-buffer', '-' },
+      ['*'] = { 'tmux', 'save-buffer', '-' },
+    },
+    cache_enabled = 1,
+  }
+end
+
 -- Define the default light and dark theme variants for use by the theme toggle keymap
 local dark_theme = 'tokyonight-night'
 local light_theme = 'tokyonight-day'
