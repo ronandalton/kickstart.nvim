@@ -816,7 +816,7 @@ require('lazy').setup({
         builtin.find_files { no_ignore = true }
       end, { desc = '[S]earch [F]iles (no ignore)' })
       vim.keymap.set('n', '<C-p>', require('telescope').extensions['recent-files'].recent_files, { desc = 'Search Files (smart)' })
-      vim.keymap.set('n', '<C-S-P>', function()
+      vim.keymap.set('n', '<leader>sR', function()
         require('telescope').extensions['recent-files'].recent_files { no_ignore = true }
       end, { desc = 'Search Files (smart) (no ignore)' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
