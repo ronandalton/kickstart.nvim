@@ -812,6 +812,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorschemes' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<leader>sx', function()
+        vim.ui.input({ prompt = 'Enter search term: ' }, function(pattern)
+          if pattern and #pattern > 0 then
+            builtin.find_files { find_command = { 'rg', '--files-without-match', '--color', 'never', '-e', pattern } }
+          end
+        end)
+      end, { desc = '[S]earch files not containing' })
       vim.keymap.set('n', '<leader>sF', function()
         builtin.find_files { no_ignore = true }
       end, { desc = '[S]earch [F]iles (no ignore)' })
