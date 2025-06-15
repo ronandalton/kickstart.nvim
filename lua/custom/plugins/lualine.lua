@@ -29,6 +29,13 @@ return {
         },
       },
     },
+    options = {
+      disabled_filetypes = {
+        statusline = {
+          'dashboard',
+        },
+      },
+    },
   },
   config = function(_, opts)
     require('lualine').setup(opts)

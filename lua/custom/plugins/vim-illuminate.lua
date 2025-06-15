@@ -31,6 +31,7 @@ return {
       'TelescopeResults',
       'harpoon',
       'leetcode.nvim',
+      'dashboard',
     },
   },
   config = function(_, opts)
